@@ -1,0 +1,6 @@
+letsencrypt:
+  email: ""
+  issuer: letsencrypt-staging
+
+traefik:
+  dashboardDomain: ""

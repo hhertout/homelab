@@ -1,0 +1,5 @@
+apiVersion: v2
+name: cluster-manifests
+description: CRD-dependent manifests (ClusterIssuers, Kyverno policies, Traefik config)
+version: 0.1.0
+type: application

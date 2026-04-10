@@ -1,0 +1,8 @@
+kube_host = ""
+kube_ca_certificate = ""
+kube_token = ""
+
+argocd_domain = ""
+letsencrypt_staging = false
+
+argocd_admin_password = ""

@@ -1,0 +1,9 @@
+defaultSettings:
+  defaultReplicaCount: 1
+  defaultDataPath: /var/lib/longhorn
+  storageMinimalAvailablePercentage: 15
+  backupstorePollInterval: 300
+
+persistence:
+  defaultClass: true
+  defaultClassReplicaCount: 1

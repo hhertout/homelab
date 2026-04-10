@@ -1,0 +1,9 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is gitignored — never commit it.
+
+kube_host           = "https://<control-plane-ip>:6443"
+kube_ca_certificate = "<base64-encoded-ca-cert>"
+kube_token          = "<service-account-token>"
+
+# PostgreSQL
+pg_homelab_superuser_password = "<superuser-password>"

@@ -1,0 +1,35 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: require-labels
+  annotations:
+    policies.kyverno.io/title: Require Labels
+    policies.kyverno.io/severity: low
+spec:
+  validationFailureAction: Audit
+  rules:
+    - name: require-app-and-env
+      match:
+        any:
+          - resources:
+              kinds:
+                - Deployment
+                - StatefulSet
+                - DaemonSet
+      exclude:
+        any:
+          - resources:
+              namespaces:
+                - kube-system
+                - kyverno
+                - monitoring
+                - cert-manager
+                - metallb-system
+                - reloader
+      validate:
+        message: "Labels 'app' and 'env' are required."
+        pattern:
+          metadata:
+            labels:
+              app: "?*"
+              env: "?*"

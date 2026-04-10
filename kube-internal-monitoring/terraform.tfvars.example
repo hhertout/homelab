@@ -1,0 +1,24 @@
+# Copy this file to terraform.tfvars and fill in your values.
+# terraform.tfvars is gitignored — never commit it.
+
+cluster_name = "homelab"
+
+# Prometheus — https://grafana.com/orgs/<org>/stacks/<stack>/prometheus
+destinations_prometheus_url      = "https://prometheus-prod-xx-prod-xx-xx.grafana.net/api/prom/push"
+destinations_prometheus_username = "<prometheus-username>"
+destinations_prometheus_password = "<grafana-cloud-api-token>"
+
+# Loki — https://grafana.com/orgs/<org>/stacks/<stack>/logs
+destinations_loki_url      = "https://logs-prod-xxx.grafana.net/loki/api/v1/push"
+destinations_loki_username = "<loki-username>"
+destinations_loki_password = "<grafana-cloud-api-token>"
+
+# OTLP — https://grafana.com/orgs/<org>/stacks/<stack>/otlp
+destinations_otlp_url      = "https://otlp-gateway-prod-xx-xx.grafana.net/otlp"
+destinations_otlp_username = "<stack-id>"
+destinations_otlp_password = "<grafana-cloud-api-token>"
+
+# Pyroscope — https://grafana.com/orgs/<org>/stacks/<stack>/profiles
+destinations_pyroscope_url      = "https://profiles-prod-xxx.grafana.net:443"
+destinations_pyroscope_username = "<stack-id>"
+destinations_pyroscope_password = "<grafana-cloud-api-token>"

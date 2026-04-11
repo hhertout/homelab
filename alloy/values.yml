@@ -25,7 +25,6 @@ alloy:
       otelcol.exporter.kafka "default" {
         brokers          = [sys.env("KAFKA_BROKER")]
         protocol_version = "2.0.0"
-        allow_auto_topic_creation = false
 
         partition_metrics_by_resource_attributes = true
         partition_logs_by_resource_attributes = true
@@ -37,12 +36,12 @@ alloy:
         }
 
         metrics {
-            topic = "metrics"
+            topic = "raw-metrics"
             encoding = "otlp_json"
         }
 
         logs {
-            topic = "logs"
+            topic = "raw-logs"
             encoding = "otlp_json"
         }
 

@@ -33,7 +33,7 @@ metadata:
   name: strimzi-cluster-operator
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 spec:
   replicas: 1
   selector:
@@ -3160,7 +3160,7 @@ metadata:
   name: strimzi-cluster-operator
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 data:
   log4j2.properties: >
     name = COConfig
@@ -3206,11 +3206,11 @@ metadata:
   name: strimzi-cluster-operator
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-cluster-operator-namespaced
@@ -3359,11 +3359,11 @@ metadata:
   name: strimzi-cluster-operator-watched
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-cluster-operator-watched
@@ -3379,7 +3379,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-kafka-broker
@@ -16627,7 +16627,7 @@ metadata:
   name: strimzi-cluster-operator
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -16636,11 +16636,11 @@ metadata:
   name: strimzi-cluster-operator-entity-operator-delegation
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-entity-operator
@@ -24495,7 +24495,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-kafka-client
@@ -37275,11 +37275,11 @@ metadata:
   name: strimzi-cluster-operator-leader-election
   labels:
     app: strimzi
-  namespace: {{ .Release.Namespace}}
+  namespace: kafka
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-cluster-operator-leader-election
@@ -37295,7 +37295,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: strimzi-cluster-operator
-    namespace: {{ .Release.Namespace}}
+    namespace: kafka
 roleRef:
   kind: ClusterRole
   name: strimzi-cluster-operator-global

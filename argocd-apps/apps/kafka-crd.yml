@@ -8,9 +8,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/hhertout/homelab.git
-    targetRevision: main
-    path: kafka/crds/
+    repoURL: oci://quay.io/strimzi-helm/strimzi-kafka-operator
+    chart: strimzi-kafka-operator
+    targetRevision: 0.45.2
+    helm:
+      set:
+        - name: watchAnyNamespace
+          value: "true"
   destination:
     server: https://kubernetes.default.svc
     namespace: kafka

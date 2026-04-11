@@ -26,6 +26,10 @@ cluster:
       port: 9093
       type: internal
       tls: true
+    - name: external
+      port: 9094
+      type: loadbalancer # metallb
+      tls: false
   config:
     topicReplicationFactor: 1
     transactionStateLogReplicationFactor: 1

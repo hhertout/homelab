@@ -1,0 +1,11 @@
+clusterName: homelab
+
+topics:
+  - name: raw_metrics
+    partitions: 3
+    replicas: 1
+    retentionMs: 36000000
+  - name: raw_logs
+    partitions: 3
+    replicas: 1
+    retentionMs: 36000000

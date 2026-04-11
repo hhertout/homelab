@@ -16,6 +16,29 @@ alloy:
         grpc {}
 
         output {
+            metrics = [otelcol.processor.memory_limiter.default.input]
+            logs    = [otelcol.processor.memory_limiter.default.input]
+            traces  = [otelcol.processor.memory_limiter.default.input]
+        }
+      }
+
+      otelcol.processor.memory_limiter "default" {
+        limit_percentage = 75
+        spike_limit_percentage = 10
+        check_interval = "2s"
+
+        output {
+            metrics = [otelcol.exporter.batch.default.input]
+            logs    = [otelcol.exporter.batch.default.input]
+            traces  = [otelcol.exporter.batch.default.input]
+        }
+      }
+
+      otelcol.processor.batch "default" {
+        send_batch_max_size = 1000
+        send_batch_size = 800
+
+        output {
             metrics = [otelcol.exporter.kafka.default.input]
             logs    = [otelcol.exporter.kafka.default.input]
             traces  = [otelcol.exporter.kafka.default.input]
@@ -29,11 +52,6 @@ alloy:
         partition_metrics_by_resource_attributes = true
         partition_logs_by_resource_attributes = true
         partition_traces_by_id = true
-
-        batch {
-          min_size = 500
-          max_size = 1000
-        }
 
         metrics {
             topic = "raw-metrics"

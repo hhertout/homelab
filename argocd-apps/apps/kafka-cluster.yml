@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: kafka-cluster
   namespace: argo
-  annotations:
-    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
@@ -15,5 +13,5 @@ spec:
     namespace: kafka
   syncPolicy:
     automated:
-      prune: false
+      prune: true
       selfHeal: true

@@ -1,0 +1,19 @@
+apiVersion: kafka.strimzi.io/v1
+kind: Kafka
+metadata:
+  name: {{ .Values.cluster.name }}
+spec:
+  kafka:
+    version: {{ .Values.version | default "4.2.0" }}
+    metadataVersion: 4.2-IV1
+    listeners:
+{{ .Values.cluster.listeners | default list | toYaml | indent 6 }}
+    config:
+      offsets.topic.replication.factor: {{ .Values.cluster.config.topicReplicationFactor }}
+      transaction.state.log.replication.factor: {{ .Values.cluster.config.transactionStateLogReplicationFactor }}
+      transaction.state.log.min.isr: {{ .Values.cluster.config.transactionStateLogMinIsr }}
+      default.replication.factor: {{ .Values.cluster.config.defaultReplicationFactor }}
+      min.insync.replicas: {{ .Values.cluster.config.minInSyncReplicas }}
+  entityOperator:
+    topicOperator: {{ .Values.topicOperator.resources | default dict | toYaml | indent 6 }}
+    userOperator: {{ .Values.userOperator.resources | default dict | toYaml | indent 6 }}

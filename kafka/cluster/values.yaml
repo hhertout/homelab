@@ -1,0 +1,52 @@
+version: 4.2.0
+
+nodePool:
+  count: 1
+  volumes:
+    - id: 0
+      type: persistent-claim
+      size: 75Gi
+      kraftMetadata: shared
+  resources:
+    requests:
+      memory: 2Gi
+      cpu: "2"
+    limits:
+      memory: 6Gi
+      cpu: "4"
+
+cluster:
+  name: homelab
+  listeners:
+    - name: plain
+      port: 9092
+      type: internal
+      tls: false
+    - name: tls
+      port: 9093
+      type: internal
+      tls: true
+  config:
+    topicReplicationFactor: 1
+    transactionStateLogReplicationFactor: 1
+    transactionStateLogMinIsr: 1
+    defaultReplicationFactor: 1
+    minInSyncReplicas: 1
+
+topicOperator:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 50m
+    limits:
+      memory: 512Mi
+      cpu: 200m
+
+userOperator:
+  resources:
+    requests:
+      memory: 256Mi
+      cpu: 50m
+    limits:
+      memory: 128Mi
+      cpu: 256m

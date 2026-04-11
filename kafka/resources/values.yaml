@@ -4,8 +4,8 @@ topics:
   - name: raw-metrics
     partitions: 3
     replicas: 1
-    retentionMs: 36000000
+    retentionMs: "36000000"
   - name: raw-logs
     partitions: 3
     replicas: 1
-    retentionMs: 36000000
+    retentionMs: "36000000"

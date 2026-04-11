@@ -106,7 +106,8 @@ alloy:
 controller:
   type: 'deployment'
   replicas: 1
-  podAnnotations: {}
+  podAnnotations:
+    reloader.stakater.com/auto: "true"
   autoscaling:
     horizontal:
       enabled: true

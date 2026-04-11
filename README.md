@@ -28,17 +28,6 @@ This repository contains everything needed to deploy and operate my homelab. It 
 - Document the "why" behind infrastructure decisions, not just the "what"
 - Minimize manual steps and snowflake configurations
 
-## Structure
-
-```
-homelab/
-├── ...   # structure will grow here
-```
-
-## Prerequisites
-
-> To be documented as the project grows.
-
 ## Getting Started
 
 > To be documented as the project grows.

@@ -46,20 +46,14 @@ resource "helm_release" "metallb" {
 # Longhorn — distributed block storage
 # ---
 
-/* resource "kubernetes_namespace" "longhorn" {
-  metadata {
-    name = "longhorn-system"
-  }
-}
-
 resource "helm_release" "longhorn" {
   name       = "longhorn"
   repository = "https://charts.longhorn.io"
   chart      = "longhorn"
   version    = "1.7.2"
-  namespace  = kubernetes_namespace.longhorn.metadata[0].name
+  namespace  = "longhorn-system"
+
+  create_namespace = true
 
   values = [file("${path.module}/values/longhorn.yaml")]
 }
-
- */

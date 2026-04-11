@@ -8,10 +8,10 @@ module "namespace_example" {
   }
 
   quota = {
-    requests_cpu    = "2"
-    requests_memory = "2Gi"
-    limits_cpu      = "4"
-    limits_memory   = "4Gi"
+    requests_cpu    = "6"
+    requests_memory = "8Gi"
+    limits_cpu      = "10"
+    limits_memory   = "12Gi"
     pods            = "20"
   }
 

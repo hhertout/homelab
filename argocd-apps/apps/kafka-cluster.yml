@@ -11,6 +11,10 @@ spec:
   destination:
     server: https://kubernetes.default.svc
     namespace: kafka
+  ignoreDifferences:
+    - group: ""
+      kind: PersistentVolumeClaim
+      namespace: kafka
   syncPolicy:
     automated:
       prune: false

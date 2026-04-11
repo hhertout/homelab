@@ -42,10 +42,12 @@ resource "helm_release" "cluster_manifests" {
     letsencrypt_email        = var.letsencrypt_email
     letsencrypt_issuer       = local.letsencrypt_issuer
     traefik_dashboard_domain = var.traefik_dashboard_domain
+    metallb_address_range    = var.metallb_address_range
   })]
 
   depends_on = [
     helm_release.cert_manager,
+    helm_release.metallb,
     kubernetes_secret.traefik_dashboard_auth,
     kubernetes_secret.cloudflare_api_token,
   ]

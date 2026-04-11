@@ -9,11 +9,11 @@ nodePool:
       kraftMetadata: shared
   resources:
     requests:
-      memory: 2Gi
-      cpu: "2"
+      memory: "400Mi"
+      cpu: "50m"
     limits:
-      memory: 6Gi
-      cpu: "4"
+      memory: "1Gi"
+      cpu: "1"
 
 cluster:
   name: homelab
@@ -40,20 +40,20 @@ cluster:
 topicOperator:
   resources:
     requests:
-      memory: 256Mi
-      cpu: 50m
+      memory: 125Mi
+      cpu: 10m
     limits:
-      memory: 512Mi
+      memory: 256Mi
       cpu: 200m
 
 userOperator:
   resources:
     requests:
-      memory: 256Mi
-      cpu: 50m
+      memory: 125Mi
+      cpu: 10m
     limits:
-      memory: 512Mi
-      cpu: 256m
+      memory: 256Mi
+      cpu: 200m
   livenessProbe:
     initialDelaySeconds: 30
     periodSeconds: 30

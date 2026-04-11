@@ -54,3 +54,12 @@ variable "cloudflare_api_token" {
   type        = string
   sensitive   = true
 }
+
+# ---
+# MetalLB
+# ---
+
+variable "metallb_address_range" {
+  description = "IP address range for MetalLB LoadBalancer services (e.g. 192.168.1.200-192.168.1.250)"
+  type        = string
+}

@@ -15,3 +15,6 @@ letsencrypt_staging = true
 
 # Cloudflare (DNS-01 solver for cert-manager)
 cloudflare_api_token = "<cloudflare-api-token-with-dns-edit>"
+
+# MetalLB
+metallb_address_range = "192.168.1.200-192.168.1.250"

@@ -4,3 +4,7 @@ letsencrypt:
 
 traefik:
   dashboardDomain: ${traefik_dashboard_domain}
+
+metallb:
+  addresses:
+    - ${metallb_address_range}

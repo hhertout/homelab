@@ -15,5 +15,7 @@ spec:
       default.replication.factor: {{ .Values.cluster.config.defaultReplicationFactor }}
       min.insync.replicas: {{ .Values.cluster.config.minInSyncReplicas }}
   entityOperator:
-    topicOperator: {{ .Values.topicOperator.resources | default dict | toYaml | indent 6 }}
-    userOperator: {{ .Values.userOperator.resources | default dict | toYaml | indent 6 }}
+    topicOperator:
+{{ .Values.topicOperator | toYaml | indent 6 }}
+    userOperator:
+{{ .Values.userOperator | toYaml | indent 6 }}

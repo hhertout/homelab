@@ -85,6 +85,7 @@ variable "network_policy" {
     allow_same_ns    = optional(bool, true)  # allow traffic within the same namespace
     allow_dns        = optional(bool, true)  # allow egress to kube-dns (port 53)
     allow_monitoring = optional(bool, true)  # allow ingress from monitoring namespace (Prometheus scraping)
+    allow_apiserver  = optional(bool, true)  # allow egress to Kubernetes API server
   })
   default = {}
 }

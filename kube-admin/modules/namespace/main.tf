@@ -237,6 +237,45 @@ resource "kubernetes_network_policy" "allow_monitoring" {
   }
 }
 
+# Allow egress to the Kubernetes API server
+resource "kubernetes_network_policy" "allow_apiserver" {
+  count = try(var.network_policy.allow_apiserver, true) ? 1 : 0
+
+  metadata {
+    name      = "allow-apiserver-egress"
+    namespace = kubernetes_namespace.this.metadata[0].name
+  }
+
+  spec {
+    pod_selector {}
+    policy_types = ["Egress"]
+
+    egress {
+      to {
+        ip_block {
+          cidr = "10.43.0.1/32"
+        }
+      }
+      ports {
+        port     = "443"
+        protocol = "TCP"
+      }
+    }
+
+    egress {
+      to {
+        ip_block {
+          cidr = "192.168.1.0/24"
+        }
+      }
+      ports {
+        port     = "6443"
+        protocol = "TCP"
+      }
+    }
+  }
+}
+
 # ---
 # Registry secret
 # ---

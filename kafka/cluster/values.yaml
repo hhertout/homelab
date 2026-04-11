@@ -50,3 +50,11 @@ userOperator:
     limits:
       memory: 512Mi
       cpu: 256m
+  livenessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 6
+  readinessProbe:
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    failureThreshold: 6

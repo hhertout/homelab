@@ -75,6 +75,64 @@ alloy:
             max_elapsed_time = "10m"
         }
       }
+
+      // Self-observability configuration
+      prometheus.exporter.self "alloy" {}
+
+      prometheus.scrape "alloy_internal" {
+        targets    = prometheus.exporter.self.alloy.targets
+        forward_to = [prometheus.remote_write.prom.receiver]
+
+        scrape_interval = "30s"
+        job_name        = "alloy"
+        }
+
+      prometheus.remote_write "prom" {
+        endpoint {
+            url = "https://prometheus-prod-24-prod-eu-west-2.grafana.net./api/prom/push"
+            headers = {}
+            basic_auth {
+                username = sys.env("GC_USERNAME")
+                password = sys.env("GC_PASSWORD")
+            }
+            tls_config {
+                insecure_skip_verify = true
+            }
+
+            send_native_histograms = false
+
+            queue_config {
+              capacity = 10000
+              min_shards = 1
+              max_shards = 50
+              max_samples_per_send = 2000
+              batch_send_deadline = "5s"
+              min_backoff = "30ms"
+              max_backoff = "5s"
+              retry_on_http_429 = true
+              sample_age_limit = "0s"
+            }
+
+          write_relabel_config {
+            source_labels = ["cluster"]
+            regex = ""
+            replacement = "homelab"
+            target_label = "cluster"
+          }
+          write_relabel_config {
+            source_labels = ["k8s_cluster_name"]
+            regex = ""
+            replacement = "homelab"
+            target_label = "k8s_cluster_name"
+          }
+
+          wal {
+            truncate_frequency = "2h"
+            min_keepalive_time = "5m"
+            max_keepalive_time = "8h"
+          }
+        }
+      }
       
   clustering:
     enabled: true
@@ -85,7 +143,16 @@ alloy:
   extraEnv: 
     - name: "KAFKA_BROKER"
       value: "homelab-kafka-bootstrap.kafka.svc.cluster.local:9092"
-  envFrom: []
+    - name: "GC_USERNAME"
+      valueFrom:
+        secretKeyRef:
+          name: "grafana-cloud-metrics-grafana-k8s-monitoring"
+          key: "username"
+    - name: "GC_PASSWORD"
+      valueFrom:
+        secretKeyRef:
+          name: "grafana-cloud-metrics-grafana-k8s-monitoring"
+          key: "password"
   extraPorts:
     - name: "otlp-grpc"
       port: 4317
@@ -97,8 +164,8 @@ alloy:
       protocol: "TCP"
   resources:
     requests:
-      memory: "120Mi"
-      cpu: "50m"
+      memory: "80Mi"
+      cpu: "20m"
     limits:
       memory: "256Mi"
       cpu: "200m"
@@ -111,8 +178,8 @@ controller:
   autoscaling:
     horizontal:
       enabled: true
-      minReplicas: 3
-      maxReplicas: 5
+      minReplicas: 1
+      maxReplicas: 3
       targetCPUUtilizationPercentage: 0
       targetMemoryUtilizationPercentage: 80
 

@@ -28,7 +28,7 @@ cluster:
       tls: true
     - name: external
       port: 9095
-      type: nodeport
+      type: loadbalancer # metallb
       tls: false
   config:
     topicReplicationFactor: 1

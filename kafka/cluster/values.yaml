@@ -27,7 +27,7 @@ cluster:
       type: internal
       tls: true
     - name: external
-      port: 9094
+      port: 9095
       type: loadbalancer # metallb
       tls: false
   config:

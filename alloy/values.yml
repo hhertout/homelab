@@ -55,12 +55,12 @@ alloy:
 
         metrics {
             topic = "raw-metrics"
-            encoding = "otlp_json"
+            encoding = "otlp_proto"
         }
 
         logs {
             topic = "raw-logs"
-            encoding = "otlp_json"
+            encoding = "otlp_proto"
         }
 
         sending_queue {
